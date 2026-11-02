@@ -20,20 +20,21 @@ def add_node(name, hardware_type):
     return node
 
 
-def add_link(name, node_a, ip_a, node_b, ip_b):
-    link = request.Link(name)
-    for node, ip in ((node_a, ip_a), (node_b, ip_b)):
+def add_lan(name, members):
+    lan = request.LAN(name)
+    for node, ip in members:
         iface = node.addInterface("if-" + name)
         iface.addAddress(pg.IPv4Address(ip, NETMASK))
-        link.addInterface(iface)
+        lan.addInterface(iface)
 
 
 sgx = add_node("sgx-node", "d750")
 tdx = add_node("tdx-node", "d760")
-ueransim = add_node("ueransim-node", "xl170")
+ueransim = add_node("ueransim-node", None)
 
-add_link("link-sgx-tdx", sgx, "10.10.1.1", tdx, "10.10.1.2")
-add_link("link-ueransim-sgx", ueransim, "10.10.2.1", sgx, "10.10.2.2")
-add_link("link-ueransim-tdx", ueransim, "10.10.3.1", tdx, "10.10.3.2")
+
+add_lan("lan-core", [(sgx, "10.10.1.1"), (tdx, "10.10.1.2")])
+
+add_lan("lan-ran", [(ueransim, "10.10.2.1"), (sgx, "10.10.2.2"), (tdx, "10.10.2.3")])
 
 pc.printRequestRSpec(request)
