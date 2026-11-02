@@ -28,7 +28,7 @@ def add_lan(name, members):
 
 sgx = add_node("sgx-node", "urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU24-64-STD", "d750")
 tdx = add_node("tdx-node", "urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU24-64-STD", "d760")
-ueransim = add_node("ueransim-node", "urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU24-64-STD", None)
+ueransim = add_node("ueransim-node", "urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU22-64-STD", None)
 
 
 add_lan("lan-core", [(sgx, "10.10.1.1"), (tdx, "10.10.1.2")])
