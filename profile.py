@@ -9,9 +9,9 @@ pc = portal.Context()
 request = pc.makeRequestRSpec()
 
 
-def add_node(name, hardware_type):
+def add_node(name, image, hardware_type):
     node = request.RawPC(name)
-    node.disk_image = "urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU24-64-STD"
+    node.disk_image = image
     node.component_manager_id = "urn:publicid:IDN+utah.cloudlab.us+authority+cm"
     if hardware_type:
         node.hardware_type = hardware_type
@@ -26,9 +26,9 @@ def add_lan(name, members):
         lan.addInterface(iface)
 
 
-sgx = add_node("sgx-node", "d750")
-tdx = add_node("tdx-node", "d760")
-ueransim = add_node("ueransim-node", "xl170")
+sgx = add_node("sgx-node", "urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU24-64-STD", "d750")
+tdx = add_node("tdx-node", "urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU24-64-STD", "d760")
+ueransim = add_node("ueransim-node", "urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU24-64-STD", None)
 
 
 add_lan("lan-core", [(sgx, "10.10.1.1"), (tdx, "10.10.1.2")])
