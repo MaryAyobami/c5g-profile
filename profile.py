@@ -30,7 +30,7 @@ def add_link(name, node_a, ip_a, node_b, ip_b):
 
 sgx = add_node("sgx-node", "d750")
 tdx = add_node("tdx-node", "d760")
-ueransim = add_node("ueransim-node", None)
+ueransim = add_node("ueransim-node", "xl170")
 
 add_link("link-sgx-tdx", sgx, "10.10.1.1", tdx, "10.10.1.2")
 add_link("link-ueransim-sgx", ueransim, "10.10.2.1", sgx, "10.10.2.2")
