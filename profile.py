@@ -28,7 +28,7 @@ def add_lan(name, members):
 
 sgx = add_node("sgx-node", "d750")
 tdx = add_node("tdx-node", "d760")
-ueransim = add_node("ueransim-node", None)
+ueransim = add_node("ueransim-node", "xl170")
 
 
 add_lan("lan-core", [(sgx, "10.10.1.1"), (tdx, "10.10.1.2")])
