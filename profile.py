@@ -23,7 +23,7 @@ def add_node(name, hardware_type):
 def add_link(name, node_a, ip_a, node_b, ip_b):
     link = request.Link(name)
     for node, ip in ((node_a, ip_a), (node_b, ip_b)):
-        iface = node.addInterface(f"if-{name}")
+        iface = node.addInterface("if-" + name)
         iface.addAddress(pg.IPv4Address(ip, NETMASK))
         link.addInterface(iface)
 
